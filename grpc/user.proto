@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package user;
+
+message User {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string username = 4;
+  string email = 6;
+  string mobile = 7;
+  string statut = 14;
+  string Role = 15;
+  optional string profilePic=16;
+  optional string   coverPhoto=17;
+  
+  }
+
+message getuserRequest{
+    User user=1;
+    
+}
+message getReplyRequest{
+     string message=1;
+}
+message getuserResponse{
+    User user=1;
+}
+message getReplyResponse{
+    string message=1;
+}
+
+service UserService {
+    rpc GetReply(getReplyRequest) returns (getReplyResponse);
+    rpc GetUser(getuserRequest) returns (getuserResponse);
+   
+  }
+  

@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package club;
+syntax = "proto3";
+
+message Admin {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string username = 4;
+  string email = 6;
+  optional string profilePic = 16;
+}
+
+message Member {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string username = 4;
+  string email = 6;
+  optional string profilePic = 16;
+}
+
+message Publication {
+  string id = 1;
+  string article = 2;
+  string submit_by = 3;
+  string createdAt = 4;
+  optional string image = 5;
+}
+
+message Club {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string logo = 4;
+}
+
+message Clubdetails {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string logo = 4;
+  optional string facebook_url = 5;
+  optional string twitter_url = 6;
+  optional string instagram_url = 7;
+  optional string linkedin_url = 8;
+  repeated Form_submite form_submite = 9;
+  repeated Check_submite check_submite = 10;
+  repeated Text_submite text_submite = 11;
+  repeated Publication publications = 12;
+  repeated string members = 13;
+  repeated string admins = 14;
+  string category = 15;
+}
+
+message Form_submite {
+  string question = 1;
+  repeated string response = 2;
+  optional bool is_other = 3;
+  optional bool is_required = 4;
+}
+
+message Check_submite {
+  string question = 1;
+  repeated string response = 2;
+  optional bool is_required = 3;
+}
+
+message Text_submite {
+  string question = 1;
+  optional bool is_required = 2;
+  optional string typetext = 3;
+}
+
+message Cluball {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string logo = 4;
+  string category = 5;
+  optional string facebook_url = 6;
+  optional string twitter_url = 7;
+  optional string instagram_url = 8;
+  optional string linkedin_url = 9;
+  repeated Publication publications = 10;
+  repeated Member members = 11;
+  repeated Admin admins = 12;
+}
+
+message getclubsRequest {
+  repeated Club clubs = 1;
+}
+
+message getclubsResponse {
+  repeated Club clubs = 1;
+}
+
+message getpubRequest {
+  Publication pub = 1;
+}
+
+message getpubResponse {
+  Publication pub = 1;
+}
+
+message getclubsdRequest {
+  Cluball club = 1;
+}
+
+message getclubsdResponse {
+  Cluball club = 1;
+}
+
+message getclubsMessage {
+  string id = 1;
+}
+
+message getclubsMessageR {
+  string id = 1;
+}
+
+message getMessage {
+  string message = 1;
+}
+
+message giveMessage {
+  string message = 1;
+}
+
+message getcateoryRequest {
+  repeated string categories = 1;
+}
+
+message getcateoryResponse {
+  repeated string categories = 1;
+}
+
+message getclubsalld {
+  Clubdetails clubs = 1;
+}
+
+message giveclubsalld {
+  Clubdetails clubs = 1;
+}
+
+service ClubService {
+  rpc GetClubs(getclubsRequest) returns (getclubsResponse);
+  rpc GetClubsdetails(getclubsdRequest) returns (getclubsdResponse);
+  rpc GetCategories(getcateoryRequest) returns (getcateoryResponse);
+  rpc GetMessages(getclubsMessage) returns (getclubsMessageR);
+  rpc Getpub(getpubRequest) returns (getpubResponse);
+  rpc GetM(getMessage) returns (giveMessage);
+  rpc getclubd(getclubsalld) returns (giveclubsalld);
+}
